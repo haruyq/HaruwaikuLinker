@@ -29,15 +29,40 @@ public class OnMessage extends ListenerAdapter {
         Message msg = ev.getMessage();
         String author = ChatRegex.escapeMiniMessage(msg.getAuthor().getEffectiveName());
         String content = ChatRegex.decorateLinks(msg.getContentRaw());
+        String attachments = formatAttachments(msg);
+        if (!attachments.isEmpty()) {
+            if (!content.isEmpty()) {
+                content = content + " " + attachments;
+            } else {
+                content = attachments;
+            }
+        }
 
         String memberHexColor = "#ffffff";
-        Color color = msg.getMember().getColor();
-        if (color != null) {
+        if (msg.getMember() != null && msg.getMember().getColor() != null) {
+            Color color = msg.getMember().getColor();
             memberHexColor = String.format("#%02x%02x%02x", color.getRed(), color.getGreen(), color.getBlue());
         }
 
         author = "<" + memberHexColor + ">" + author + "</" + memberHexColor + ">";
 
-        sender.broadcast("<aqua>[Discord]</aqua> " + author + " » " + content);
+        sender.broadcast("<aqua>[Discord]</aqua> " + author + " > " + content);
+    }
+
+    private String formatAttachments(Message msg) {
+        if (msg.getAttachments().isEmpty()) {
+            return "";
+        }
+
+        StringBuilder out = new StringBuilder();
+        for (Message.Attachment attachment : msg.getAttachments()) {
+            if (out.length() > 0) {
+                out.append(" ");
+            }
+            String name = ChatRegex.escapeMiniMessage(attachment.getFileName());
+            String url = ChatRegex.decorateLinks(attachment.getUrl());
+            out.append("<gray>[File]</gray> ").append(name).append(": ").append(url);
+        }
+        return out.toString();
     }
 }
