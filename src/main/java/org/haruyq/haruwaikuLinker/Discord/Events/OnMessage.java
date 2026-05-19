@@ -46,7 +46,7 @@ public class OnMessage extends ListenerAdapter {
 
         author = "<" + memberHexColor + ">" + author + "</" + memberHexColor + ">";
 
-        sender.broadcast("<aqua>[Discord]</aqua> " + author + " > " + content);
+        sender.broadcast("<aqua>[Discord]</aqua> " + author + " » " + content);
     }
 
     private String formatAttachments(Message msg) {
