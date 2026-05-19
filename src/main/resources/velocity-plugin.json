@@ -1,0 +1,10 @@
+{
+  "id": "haruwaikulinker",
+  "name": "HaruwaikuLinker",
+  "version": "${version}",
+  "main": "org.haruyq.haruwaikuLinker.HaruwaikuLinker",
+  "url": "https://haruyq.org/",
+  "authors": [
+    "haruyq"
+  ]
+}
