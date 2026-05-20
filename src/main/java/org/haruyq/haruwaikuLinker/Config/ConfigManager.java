@@ -36,9 +36,13 @@ public class ConfigManager {
         this.config.discord.channelId = getLong(fileConfig, "discord.channelId", this.config.discord.channelId);
         this.config.discord.guildId = getLong(fileConfig, "discord.guildId", this.config.discord.guildId);
 
+        this.config.squaremap.baseUrl = fileConfig.getOrElse("squaremap.baseUrl", this.config.squaremap.baseUrl);
+
         fileConfig.set("discord.token", this.config.discord.token);
         fileConfig.set("discord.channelId", this.config.discord.channelId);
         fileConfig.set("discord.guildId", this.config.discord.guildId);
+
+        fileConfig.set("squaremap.baseUrl", this.config.squaremap.baseUrl);
         // -- End --
 
         fileConfig.save();

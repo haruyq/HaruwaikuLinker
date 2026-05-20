@@ -8,4 +8,10 @@ public class Config {
     }
 
     public Discord discord = new Discord();
+
+    public static class SquareMap {
+        public String baseUrl = "https://example.com/";
+    }
+
+    public SquareMap squaremap = new SquareMap();
 }
