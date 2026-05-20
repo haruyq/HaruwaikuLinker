@@ -8,10 +8,12 @@ import com.velocitypowered.api.proxy.ProxyServer;
 import org.haruyq.haruwaikuLinker.Config.Config;
 import org.haruyq.haruwaikuLinker.Config.ConfigManager;
 import org.haruyq.haruwaikuLinker.Discord.Bot;
+import org.haruyq.haruwaikuLinker.Discord.Commands.SquareMapLink;
 import org.haruyq.haruwaikuLinker.Events.*;
 import org.slf4j.Logger;
 
 import java.nio.file.Path;
+import java.util.List;
 
 public class HaruwaikuLinker {
 
@@ -39,7 +41,11 @@ public class HaruwaikuLinker {
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
         try {
+            bot.registerCommandModule(() -> List.of(
+                    new SquareMapLink(server, config.squaremap.baseUrl)
+            ));
             bot.init();
+
             this.dscSender = new org.haruyq.haruwaikuLinker.Discord.Sender(bot.getJda(), config.discord.channelId, log);
             server.getEventManager().register(this, new OnPlayerChat(dscSender));
             server.getEventManager().register(this, new OnPlayerJoin(dscSender));

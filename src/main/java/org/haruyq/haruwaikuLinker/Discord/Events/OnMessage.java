@@ -28,7 +28,7 @@ public class OnMessage extends ListenerAdapter {
 
         Message msg = ev.getMessage();
         String author = ChatRegex.escapeMiniMessage(msg.getAuthor().getEffectiveName());
-        String content = ChatRegex.decorateLinks(msg.getContentRaw());
+        String content = ChatRegex.decorateLinksAllowMiniMessage(msg.getContentRaw());
         String attachments = formatAttachments(msg);
         if (!attachments.isEmpty()) {
             if (!content.isEmpty()) {
