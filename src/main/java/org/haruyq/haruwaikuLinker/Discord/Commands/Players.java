@@ -34,7 +34,14 @@ public class Players implements SlashCommand {
 			playerlist.add(player.getUsername());
 		}
 
-		String message = String.join(",", playerlist);
+		String message = "";
+
+		if (playerlist.size() == 0) {
+			message = "```オンラインのプレイヤーはいません。```";
+		} else {
+			message = "```" + String.join(",", playerlist) + "```";
+		}
+
 		ev.reply(message).queue();
 	}
 }
