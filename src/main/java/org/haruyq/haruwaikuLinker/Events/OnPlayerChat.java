@@ -18,6 +18,6 @@ public class OnPlayerChat {
         String msg = ev.getMessage();
         Player player = ev.getPlayer();
 
-        sender.broadcast(player.getUsername() + " » " + msg);
+        sender.broadcast("[" + player.getCurrentServer().toString() + "] " + player.getUsername() + " » " + msg);
     }
 }

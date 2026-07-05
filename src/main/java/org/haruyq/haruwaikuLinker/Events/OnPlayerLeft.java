@@ -18,6 +18,6 @@ public class OnPlayerLeft {
     public void onPlayerLeft(DisconnectEvent ev) {
         Player player = ev.getPlayer();
 
-        sender.broadcast("Server » " + player.getUsername() + "がゲームから退出しました");
+        sender.broadcast(player.getUsername() + "がゲームから退出しました");
     }
 }

@@ -17,6 +17,6 @@ public class OnPlayerJoin {
     public void onPlayerJoin(PostLoginEvent ev) {
         Player player = ev.getPlayer();
 
-        sender.broadcast("Server » " + player.getUsername() + "がゲームに参加しました");
+        sender.broadcast(player.getUsername() + "がゲームに参加しました");
     }
 }
