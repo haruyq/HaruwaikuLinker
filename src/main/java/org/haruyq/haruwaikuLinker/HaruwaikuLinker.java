@@ -48,7 +48,7 @@ public class HaruwaikuLinker {
 			bot.init();
 
 			this.dscSender = new org.haruyq.haruwaikuLinker.Discord.Sender(bot.getJda(), config.discord.channelId, log);
-			server.getEventManager().register(this, new OnPlayerChat(dscSender));
+			server.getEventManager().register(this, new OnPlayerChat(dscSender, server));
 			server.getEventManager().register(this, new OnPlayerJoin(dscSender));
 			server.getEventManager().register(this, new OnPlayerLeft(dscSender));
 
